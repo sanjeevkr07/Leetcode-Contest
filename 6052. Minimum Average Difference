@@ -1,0 +1,46 @@
+class Solution {
+public:
+    int minimumAverageDifference(vector<int>& nums) {
+        long long int n=nums.size();
+        long long int leftSum=0;
+        long long int rightSum=0;
+        long long int leftDr;
+
+        //rightSum
+        for(long long int i=0;i<n;i++){
+            rightSum+=nums[i];
+        }
+        //cout<<rightSum<<endl;
+        long long int mini=INT_MAX;
+        long long int minInd=0;
+        //find min avg
+        for(long long int i=0;i<n-1;i++){
+            leftSum+=nums[i];
+            rightSum-=nums[i];
+            leftDr=i+1;
+            long long int rightDr=n-leftDr;
+            
+            //mini=min(mini,abs((leftSum%leftDr)-(rightSum%rightDr)));
+            if(mini>abs((leftSum/leftDr)-(rightSum/rightDr))){
+                mini=abs((leftSum/leftDr)-(rightSum/rightDr));
+                minInd=i;
+            }
+            // cout<<"agv"<<leftSum<<":"<<leftDr<<"<->"<<rightSum<<":"<<rightDr<<endl;
+            // cout<<(leftSum/leftDr)<<"-"<<(rightSum/rightDr)<<endl;   
+            // //cout<<mini<<endl;
+            
+        }
+        
+        //lastCase
+        
+        leftSum+=nums[n-1];
+        leftDr=n;
+        //mini=min(mini,abs((leftSum%leftDr)-0));
+        if(mini>abs(leftSum/leftDr))
+        {
+            minInd=n-1;
+        }
+        return minInd;
+        
+    }
+};
