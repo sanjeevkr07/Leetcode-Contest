@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int countPrefixes(vector<string>& words, string s) {
+        int n=words.size();
+        int count=0;
+        for(string str: words){
+            int strLen=str.length();
+            if(str==s.substr(0,strLen))
+                count++;
+        }
+        return count;
+    }
+};
